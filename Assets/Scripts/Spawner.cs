@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spwanPoint;
 
     float timer;
-
+    
     private void Awake()
     {
         spwanPoint = GetComponentsInChildren<Transform>();

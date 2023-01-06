@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // PrefabµéÀ» º¸°üÇÒ º¯¼ö
+    // Prefabï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject[] prefabs;
 
-    // Ç®À» °ü¸®ÇÏ´Â ¸®½ºÆ®µé ÇÊ¿ä - ÇÁ¸®ÆÕ°ú ¸®½ºÆ®´Â 1:1 ´ëÀÀ
+    // Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê¿ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½Õ°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 1:1 ï¿½ï¿½ï¿½ï¿½
     List<GameObject>[] pools;
 
     private void Awake()
@@ -24,22 +24,22 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ¼±ÅÃÇÑ Ç®ÀÇ »ç¿ëµÇÁö ¾Ê´Â °ÔÀÓ ¿ÀºêÁ§Æ® Á¢±Ù
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach(GameObject item in pools[index])
         {
             if (!item.activeSelf)
             {
-                // ¹ß°ßÇÏ¸é select º¯¼ö¿¡ ÇÒ´ç
+                // ï¿½ß°ï¿½ï¿½Ï¸ï¿½ select ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
                 select = item;
                 select.SetActive(true);
                 break;
             }
         }
 
-        // ¸ø Ã£¾Ò´Ù¸é
+        // ï¿½ï¿½ Ã£ï¿½Ò´Ù¸ï¿½
         if (!select)
         {
-            // »õ·Ó°Ô »ý¼ºÇÏ°í select º¯¼ö¿¡ ÇÒ´ç
+            // ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ select ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);
         }

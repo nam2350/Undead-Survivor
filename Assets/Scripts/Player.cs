@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         */
 
         // 물리 이동
-                Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }
         void LateUpdate()

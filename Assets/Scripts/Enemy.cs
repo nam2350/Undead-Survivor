@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
     }
     void OnEnable()
     {
-        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        target = GameManager.instance.player.gameObject.GetComponent<Rigidbody2D>();
         isLive = true;
         health = maxHealth;
     }
@@ -58,5 +59,30 @@ public class Enemy : MonoBehaviour
         speed = data.speed;
         maxHealth = data.health;
         health = data.health;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+        {
+            return;
+        }
+        //Debug.Log(collision.name);
+        health -= collision.GetComponent<Bullet>().demage;
+
+        if (health > 0)
+        {
+            // Hit Action
+        }
+        else
+        {
+            // DIE
+            Dead();
+        }
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
     }
 }

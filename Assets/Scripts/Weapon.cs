@@ -47,6 +47,10 @@ public class Weapon : MonoBehaviour
         {
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.parent = transform;
+
+            Vector3 rotVec = Vector3.forward * 360 * index / count;
+            bullet.Rotate(rotVec);
+            bullet.Translate(bullet.up * 1.5f, Space.World);
             bullet.GetComponent<Bullet>().Init(demage, -1); // -1 is Infinity Per.
         }
     }

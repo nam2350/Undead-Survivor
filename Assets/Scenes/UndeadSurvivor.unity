@@ -9152,7 +9152,7 @@ MonoBehaviour:
   id: 0
   prefabId: 1
   demage: 11
-  count: 1
+  count: 20
   speed: 0
 --- !u!1 &1089691717
 GameObject:

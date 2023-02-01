@@ -61,6 +61,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+
     public void Init()
     {
         switch (id)

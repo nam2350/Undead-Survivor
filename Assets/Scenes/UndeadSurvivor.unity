@@ -9201,6 +9201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   prefabId: 1
+
   demage: 5
   count: 1
   speed: 0

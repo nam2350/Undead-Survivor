@@ -25,7 +25,24 @@ public class Weapon : MonoBehaviour
             default:
                 break;
         }
+
+        // Test
+        if (Input.GetButtonDown("Jump"))
+        {
+            LevelUp(2, 1);
+        }
     }
+    public void LevelUp(float demage, int count)
+    {
+        this.demage += demage;
+        this.count += count;
+
+        if(id == 0)
+        {
+            Batch();
+        }
+    }
+
     public void Init()
     {
         switch (id)
@@ -45,8 +62,20 @@ public class Weapon : MonoBehaviour
     {
         for (int index=0; index < count; index++)
         {
-            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+            Transform bullet;
+            
+            if(index < transform.childCount)
+            {
+                bullet = transform.GetChild(index);
+            }
+            else
+            {
+                bullet = GameManager.instance.pool.Get(prefabId).transform;
+            }
             bullet.parent = transform;
+
+            bullet.localPosition = Vector3.zero;
+            bullet.localRotation = Quaternion.identity;
 
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);

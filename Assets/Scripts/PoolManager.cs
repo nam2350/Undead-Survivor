@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // Prefab���� ������ ����
+    // Prefab
     public GameObject[] prefabs;
-
-    // Ǯ�� �����ϴ� ����Ʈ�� �ʿ� - �����հ� ����Ʈ�� 1:1 ����
+        
     List<GameObject>[] pools;
 
     private void Awake()
@@ -24,22 +23,22 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ������ Ǯ�� ������ �ʴ� ���� ������Ʈ ����
+        
         foreach(GameObject item in pools[index])
         {
             if (!item.activeSelf)
             {
-                // �߰��ϸ� select ������ �Ҵ�
+        
                 select = item;
                 select.SetActive(true);
                 break;
             }
         }
 
-        // �� ã�Ҵٸ�
+        
         if (!select)
         {
-            // ���Ӱ� �����ϰ� select ������ �Ҵ�
+        
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);
         }

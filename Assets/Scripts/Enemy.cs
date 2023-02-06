@@ -11,23 +11,26 @@ public class Enemy : MonoBehaviour
     public RuntimeAnimatorController[] animaCon;
     public Rigidbody2D target;
 
+
     bool isLive;
 
     Rigidbody2D rigid;
     Animator anim;
     SpriteRenderer spriter;
+    WaitForFixedUpdate wait;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        wait = new WaitForFixedUpdate();
     }
 
     
     void FixedUpdate()
     {
-        if (!isLive)
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return;
         }
@@ -70,9 +73,12 @@ public class Enemy : MonoBehaviour
         //Debug.Log(collision.name);
         health -= collision.GetComponent<Bullet>().demage;
 
+        StartCoroutine(KnockBack());
+
         if (health > 0)
         {
             // Hit Action
+            anim.SetTrigger("Hit");
 
         }
         else
@@ -80,6 +86,14 @@ public class Enemy : MonoBehaviour
             // DIE
             Dead();
         }
+    }
+
+    IEnumerator KnockBack()
+    {
+        yield return wait;
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }
 
     void Dead()
